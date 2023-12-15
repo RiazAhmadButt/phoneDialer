@@ -1,17 +1,18 @@
+// src/components/DialedNumberScreen.js
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Update import statement
 
 const DialedNumberScreen = ({ dialedNumber }) => {
-  const history = useHistory();
+  const navigate = useNavigate(); // Replace useHistory with useNavigate
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       // Automatically end the call after 10 seconds
-      history.push('/call-log'); // Transition to Call Log Screen
+      navigate('/call-log'); // Use navigate instead of history.push
     }, 10000);
 
     return () => clearTimeout(timeoutId);
-  }, [history]);
+  }, [navigate]);
 
   return (
     <div className="container mx-auto mt-8">

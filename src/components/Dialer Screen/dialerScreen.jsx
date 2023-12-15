@@ -1,4 +1,3 @@
-// src/components/Dialer.js
 import React, { useState } from 'react';
 
 const Dialer = () => {
@@ -10,18 +9,19 @@ const Dialer = () => {
 
     const handleCall = () => {
         console.log(`Calling ${dialedNumber}`);
+        history.push('/dialed-number');
         // Implement additional call initiation logic here
     };
 
     return (
-        <div className="container mx-auto mt-8">
+        <div className="container mx-auto mt-8 m-5 p-5" >
             <div className="text-white text-4xl mb-4">{dialedNumber}</div>
 
             <div className="grid grid-cols-3 gap-4">
                 {Array.from(Array(9), (e, i) => i + 1).map((number) => (
                     <button
                         key={number}
-                        className="bg-gray-500 text-white rounded-full p-4"
+                        className="bg-gray-500 text-white rounded-full p-2"
                         onClick={() => handleNumberClick(number.toString())}
                     >
                         {number}
