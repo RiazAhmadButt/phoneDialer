@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Dialer = () => {
+const Dialer = ({ addCallLog }) => {
     const [dialedNumber, setDialedNumber] = useState('');
-
+    const navigate = useNavigate();
+  
     const handleNumberClick = (number) => {
-        setDialedNumber((prevNumber) => prevNumber + number);
+      setDialedNumber((prevNumber) => prevNumber + number);
     };
-
+  
     const handleCall = () => {
-        console.log(`Calling ${dialedNumber}`);
-        history.push('/dialed-number');
-        // Implement additional call initiation logic here
+      console.log(`Calling ${dialedNumber}`);
+      addCallLog(dialedNumber);
+      navigate('/dialed-number');
+    };
+  
+    const handleClose = () => {
+      setDialedNumber('');
     };
 
     return (
-        <div className="container mx-auto mt-8 m-5 p-5" >
+        <div className="container mx-auto mt-8 m-5 p-5">
             <div className="text-white text-4xl mb-4">{dialedNumber}</div>
 
             <div className="grid grid-cols-3 gap-4">
@@ -50,13 +56,13 @@ const Dialer = () => {
             <div className="flex justify-between mt-4">
                 <button
                     className="bg-gray-500 text-white rounded-full p-4"
-                    onClick={() => handleCall()}
+                    onClick={handleCall}
                 >
                     Call
                 </button>
                 <button
                     className="bg-gray-500 text-white rounded-full p-4"
-                    onClick={() => handleNumberClick('close')}
+                    onClick={handleClose}
                 >
                     Close
                 </button>
